@@ -12,6 +12,11 @@ module.exports = () => {
         },
         plugins: [
             new HtmlWebpackPlugin({})
-        ]
+        ],
+        devServer: {
+            port: 12000,
+            compress: true,
+            open: true,
+        }
     }
 }

@@ -1,6 +1,7 @@
 {
   "name": "filter-effect-display",
   "scripts": {
+    "dev": "webpack-dev-server --config config/webpack.config.js",
     "build": "webpack --config config/webpack.config.js"
   },
   "devDependencies": {
