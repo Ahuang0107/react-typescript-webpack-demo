@@ -14,7 +14,23 @@ module.exports = (isProd) => {
                         ...cssLoader(isProd),
                         ...postcssLoader(isProd),
                     ]
-                }
+                },
+                {
+                    test: /\.less$/,
+                    use: [
+                        ...cssLoader(isProd),
+                        ...postcssLoader(isProd),
+                        'less-loader',
+                    ]
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        ...cssLoader(isProd),
+                        ...postcssLoader(isProd),
+                        'sass-loader',
+                    ]
+                },
             ]
         },
         plugins: [
