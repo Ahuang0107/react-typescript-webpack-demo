@@ -1,35 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const common = require("./webpack.common.config");
+const development = require("./webpack.dev.config");
+const production = require("./webpack.prod.config");
+const {merge} = require("webpack-merge");
 
 module.exports = () => {
-    const rootFolder = process.cwd();
-    return {
-        mode: "production",
-        entry: path.join(rootFolder, 'src/index.js'),
-        output: {
-            path: path.join(rootFolder, 'dist'),
-            filename: '[name].js',
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.css$/,
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        'css-loader'
-                    ]
-                }
-            ]
-        },
-        plugins: [
-            new HtmlWebpackPlugin,
-            new MiniCssExtractPlugin,
-        ],
-        devServer: {
-            port: 12000,
-            compress: true,
-            open: true,
-        }
-    }
+    const isProd = process.env.NODE_ENV === 'production';
+    return merge(
+        common(),
+        isProd ? production() : development()
+    )
 }
