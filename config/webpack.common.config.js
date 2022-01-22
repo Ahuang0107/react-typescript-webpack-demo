@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = () => {
+module.exports = (isProd) => {
     const rootFolder = process.cwd();
     return {
         entry: path.join(rootFolder, 'src/index.js'),
@@ -11,15 +11,36 @@ module.exports = () => {
                 {
                     test: /\.css$/,
                     use: [
-                        MiniCssExtractPlugin.loader,
-                        'css-loader'
+                        ...cssLoader(isProd),
+                        ...postcssLoader(isProd),
                     ]
                 }
             ]
         },
         plugins: [
             new HtmlWebpackPlugin,
-            new MiniCssExtractPlugin,
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+            }),
         ],
     }
 }
+
+const cssLoader = (isProd) => [
+    isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+    'css-loader',
+]
+
+const postcssLoader = (isProd) => [
+    {
+        loader: 'postcss-loader',
+        options: {
+            postcssOptions: {
+                plugins: [
+                    isProd && 'postcss-preset-env'
+                ]
+            }
+        }
+    }
+]

@@ -12,12 +12,20 @@
 #### module
 
 - css
-  - css-loader: 支持js导入css
-  - mini-css-extract-plugin.loader
-
+    - postcss-loader: css 处理，配合各种预设插件比如 postcss-preset-env 来处理
+        - postcss-preset-env: convert modern CSS into something most browsers can understand
+    - css-loader: 支持js导入css
+    - mini-css-extract-plugin.loader
 
 ### webpack-merge
 
 ### cross-env
 
 统一配置Node环境变量，不同操作系统设置环境变量的方式不一定相同，cross-env进行了统一
+
+### browserslist
+
+- "> 0.2%": 兼容98%以上的主流浏览器
+- "not dead": 不去兼容已经停用的浏览器
+- "ie >=9": 只兼容ie9以上版本
+- "not op_mini all": 不去兼容任何opera mini浏览器(已经停止更新很久并不再使用)

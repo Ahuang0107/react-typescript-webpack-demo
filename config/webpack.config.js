@@ -6,7 +6,7 @@ const {merge} = require("webpack-merge");
 module.exports = () => {
     const isProd = process.env.NODE_ENV === 'production';
     return merge(
-        common(),
+        common(isProd),
         isProd ? production() : development()
     )
 }
