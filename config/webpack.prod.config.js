@@ -1,4 +1,5 @@
 const path = require("path");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 module.exports = () => {
     const rootFolder = process.cwd();
     return {
@@ -6,6 +7,17 @@ module.exports = () => {
         output: {
             path: path.join(rootFolder, 'dist'),
             filename: 'js/[name].[contenthash:8].js',
+        },
+        optimization: {
+            minimize: true,
+            minimizer: [new TerserWebpackPlugin({
+                extractComments: false,
+                terserOptions: {
+                    compress: {
+                        pure_funcs: ["console.log"]
+                    }
+                }
+            })],
         },
     }
 }

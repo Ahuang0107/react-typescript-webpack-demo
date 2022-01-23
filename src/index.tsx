@@ -4,6 +4,9 @@ import './style.css';
 import './style.scss';
 import './style.less';
 
+// test comments
+console.log("start");
+
 render(
     <>
         <div className="custom-div">
@@ -13,4 +16,4 @@ render(
         <p className="custom-p">welcome</p>
     </>,
     document.getElementById("react-page")
-)
+);
