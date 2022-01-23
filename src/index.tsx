@@ -3,6 +3,7 @@ import {render} from "react-dom";
 import './style.css';
 import './style.scss';
 import './style.less';
+import './font.css';
 
 // test comments
 console.log("start");
