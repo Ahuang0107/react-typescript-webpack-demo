@@ -1,5 +1,5 @@
 {
-  "name": "filter-effect-display",
+  "name": "react-typescript-webpack-demo",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.config.js",
     "dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.js",
