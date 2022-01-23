@@ -8,6 +8,7 @@ module.exports = () => {
             path: path.join(rootFolder, 'dist'),
             filename: 'js/[name].js',
         },
+        devtool: 'eval-cheap-module-source-map',
         devServer: {
             port: port,
             compress: true,

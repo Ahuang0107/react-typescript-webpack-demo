@@ -8,6 +8,7 @@ module.exports = () => {
             path: path.join(rootFolder, 'dist'),
             filename: 'js/[name].[contenthash:8].js',
         },
+        devtool: 'cheap-module-source-map',
         optimization: {
             minimize: true,
             minimizer: [new TerserWebpackPlugin({
