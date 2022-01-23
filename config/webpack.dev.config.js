@@ -10,6 +10,7 @@ module.exports = () => {
             clean: true,
         },
         devtool: 'eval-cheap-module-source-map',
+        cache: false,
         devServer: {
             port: port,
             compress: true,
