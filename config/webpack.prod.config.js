@@ -7,6 +7,7 @@ module.exports = () => {
         output: {
             path: path.join(rootFolder, 'dist'),
             filename: 'js/[name].[contenthash:8].js',
+            clean: true,
         },
         devtool: 'cheap-module-source-map',
         optimization: {
