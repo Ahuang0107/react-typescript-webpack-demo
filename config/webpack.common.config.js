@@ -39,6 +39,13 @@ module.exports = (isProd) => {
                         'sass-loader',
                     ]
                 },
+                {
+                    test: /\.(otf|ttf|eot|woff|woff2)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'fonts/[name][ext]'
+                    }
+                },
             ]
         },
         plugins: [
