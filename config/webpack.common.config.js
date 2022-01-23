@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = (isProd) => {
     const rootFolder = process.cwd();
     return {
-        entry: path.join(rootFolder, 'src/index.ts'),
+        entry: path.join(rootFolder, 'src/index.tsx'),
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
         },
@@ -42,7 +42,15 @@ module.exports = (isProd) => {
             ]
         },
         plugins: [
-            new HtmlWebpackPlugin,
+            new HtmlWebpackPlugin({
+                templateContent: `
+                    <html>
+                      <body>
+                        <div id='react-page'></div>
+                      </body>
+                    </html>
+                  `
+            }),
             new MiniCssExtractPlugin({
                 filename: 'css/[name].[contenthash:8].css',
                 chunkFilename: 'css/[name].[contenthash:8].chunk.css',
