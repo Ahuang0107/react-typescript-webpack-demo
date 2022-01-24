@@ -4,7 +4,7 @@ import './style.css';
 import './style.scss';
 import './style.less';
 import './font.css';
-import {CssImageTest} from "./component";
+import {CssImageTest, JsImageTest} from "./component";
 
 // test comments
 console.log("start");
@@ -17,6 +17,7 @@ render(
         <h1 className="custom-h1">welcome</h1>
         <p className="custom-p">welcome</p>
         <CssImageTest/>
+        <JsImageTest/>
     </>,
     document.getElementById("react-page")
 );
