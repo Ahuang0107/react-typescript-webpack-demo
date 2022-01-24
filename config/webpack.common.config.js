@@ -46,6 +46,13 @@ module.exports = (isProd) => {
                         filename: 'fonts/[name][ext]'
                     }
                 },
+                {
+                    test: /\.(jpg|jpeg|png)/,
+                    type: "asset/resource",
+                    generator: {
+                        filename: 'images/[name][ext]'
+                    }
+                }
             ]
         },
         plugins: [
