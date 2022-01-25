@@ -40,23 +40,18 @@ module.exports = (isProd) => {
                     ]
                 },
                 {
-                    test: /\.(otf|ttf|eot|woff|woff2|jpg|jpeg|png)$/,
+                    test: /\.(otf|ttf|eot|woff|woff2)$/,
                     type: 'asset/resource',
                     generator: {
-                        filename: 'fonts/[name][ext]'
+                        filename: 'fonts/[hash][ext][query]'
                     }
                 },
                 {
-                    test: /\.(jpg|jpeg|png)$/,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: 'images/[name].[ext]',
-                            }
-                        }
-                    ],
-                    type: 'javascript/auto'
+                    test: /\.(jpg|jpeg|png)$/i,
+                    type: "asset/resource",
+                    generator: {
+                        filename: 'images/[hash][ext][query]'
+                    }
                 }
             ]
         },
