@@ -15,7 +15,7 @@ render(
             <h1 className="custom-h1">welcome</h1>
         </div>
         <h1 className="custom-h1">welcome</h1>
-        <p className="custom-p">welcome</p>
+        <p className="custom-p">你好，世界</p>
         <CssImageTest/>
         <JsImageTest/>
     </>,
