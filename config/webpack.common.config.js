@@ -1,92 +1,100 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (isProd) => {
-    const rootFolder = process.cwd();
-    return {
-        entry: path.join(rootFolder, 'src/demo/index.tsx'),
-        resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
+  const rootFolder = process.cwd();
+  return {
+    entry: path.join(rootFolder, 'src/demo/index.tsx'),
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
         },
-        module: {
-            rules: [
-                {
-                    test: /\.tsx?$/,
-                    use: 'ts-loader',
-                    exclude: /node_modules/,
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                        ...cssLoader(isProd),
-                        ...postcssLoader(isProd),
-                    ]
-                },
-                {
-                    test: /\.less$/,
-                    use: [
-                        ...cssLoader(isProd),
-                        ...postcssLoader(isProd),
-                        'less-loader',
-                    ]
-                },
-                {
-                    test: /\.scss$/,
-                    use: [
-                        ...cssLoader(isProd),
-                        ...postcssLoader(isProd),
-                        'sass-loader',
-                    ]
-                },
-                {
-                    test: /\.(otf|ttf|eot|woff|woff2)$/,
-                    type: 'asset/resource',
-                    generator: {
-                        filename: 'fonts/[hash][ext][query]'
-                    }
-                },
-                {
-                    test: /\.(jpg|jpeg|png)$/i,
-                    type: "asset/resource",
-                    generator: {
-                        filename: 'images/[hash][ext][query]'
-                    }
-                }
-            ]
+        {
+          test: /\.css$/,
+          use: [
+            // eslint-disable-next-line @typescript-eslint/no-use-before-define
+            ...cssLoader(isProd),
+            // eslint-disable-next-line @typescript-eslint/no-use-before-define
+            ...postcssLoader(isProd),
+          ],
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                templateContent: `
-                    <html>
+        {
+          test: /\.less$/,
+          use: [
+            // eslint-disable-next-line @typescript-eslint/no-use-before-define
+            ...cssLoader(isProd),
+            // eslint-disable-next-line @typescript-eslint/no-use-before-define
+            ...postcssLoader(isProd),
+            'less-loader',
+          ],
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            // eslint-disable-next-line @typescript-eslint/no-use-before-define
+            ...cssLoader(isProd),
+            // eslint-disable-next-line @typescript-eslint/no-use-before-define
+            ...postcssLoader(isProd),
+            'sass-loader',
+          ],
+        },
+        {
+          test: /\.(otf|ttf|eot|woff|woff2)$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[hash][ext][query]',
+          },
+        },
+        {
+          test: /\.(jpg|jpeg|png)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[hash][ext][query]',
+          },
+        },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        templateContent: `
+                    <html lang="en-US">
                       <body>
                         <div id='react-page'></div>
                       </body>
                     </html>
-                  `
-            }),
-            new MiniCssExtractPlugin({
-                filename: 'css/[name].[contenthash:8].css',
-                chunkFilename: 'css/[name].[contenthash:8].chunk.css',
-            }),
-        ],
-    }
-}
+                  `,
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+      }),
+    ],
+  };
+};
 
 const cssLoader = (isProd) => [
-    isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-    'css-loader',
-]
+  isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+  'css-loader',
+];
 
 const postcssLoader = (isProd) => [
-    {
-        loader: 'postcss-loader',
-        options: {
-            postcssOptions: {
-                plugins: [
-                    isProd && 'postcss-preset-env'
-                ]
-            }
-        }
-    }
-]
+  {
+    loader: 'postcss-loader',
+    options: {
+      postcssOptions: {
+        plugins: [
+          isProd && 'postcss-preset-env',
+        ],
+      },
+    },
+  },
+];
