@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { render } from 'react-dom';
-import './style.css';
-import './style.scss';
-import './style.less';
-import './font.css';
-import { Provider } from 'react-redux';
-import { Counter, CssImageTest, JsImageTest } from './component';
-import { store } from './store';
+import * as React from "react";
+import { render } from "react-dom";
+import "./style.css";
+import "./style.scss";
+import "./style.less";
+import "./font.css";
+import { Provider } from "react-redux";
+import { Counter, CssImageTest, JsImageTest } from "./component";
+import { store } from "./store";
 
 // test comments
 // eslint-disable-next-line no-console
-console.log('start');
+console.log("start");
 
 render(
   <React.StrictMode>
@@ -25,5 +25,5 @@ render(
       <Counter />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('react-page'),
+  document.getElementById("react-page")
 );

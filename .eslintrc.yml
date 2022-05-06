@@ -1,11 +1,15 @@
 extends:
   - "airbnb"
   - "airbnb-typescript"
+  - "prettier"
+plugins:
+  - "prettier"
 parserOptions:
   project: "./tsconfig.json"
 env:
   browser: true
 rules:
+  "prettier/prettier": ["error"]
   "react/jsx-filename-extension": [ 2, { 'extensions': [ '.js', '.jsx', '.ts', '.tsx' ] } ]
   "react/button-has-type": "off"
   "react/jsx-props-no-spreading": "off"
